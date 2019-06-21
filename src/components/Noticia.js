@@ -1,23 +1,25 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Noticia = ({noticia}) => {
 
     //Extraer datos 
-    const { ulrToImage, url, title, description, source } = noticia;
+    const { urlToImage, url, title, description, source } = noticia;
 
     //Condicional si la img está disponible
-    const imagen = (ulrToImage) ? 
+    const imagen = (urlToImage) ? 
         <div className="card-image">
-            <img src={ulrToImage} alt={title}/>
+            <img src={urlToImage} alt={title}/>
             <span className="card-title">{source.name}</span>
         </div>
 
     : null;
 
     return ( 
+
         <div className="col s12 m6 l4">
             <div className="card">
-                
+                {imagen}
 
                 <div className="card-content">
                     <h3>{title}</h3>
@@ -33,5 +35,8 @@ const Noticia = ({noticia}) => {
         </div>
      );
 }
- 
+
+Noticia.propTypes = {
+    noticia : PropTypes.object.isRequired
+}
 export default Noticia;
